@@ -46,9 +46,11 @@ export default function Navigation() {
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-900 to-orange-600 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-lg">A</span>
-            </div>
+            <img
+              src="/images/profile-photo.jpg"
+              alt="Amr Ammory"
+              className="w-12 h-12 rounded-lg object-cover shadow-md"
+            />
             <div className="hidden sm:block">
               <p className="text-sm font-bold text-gray-900">Amr Ammory</p>
               <p className="text-xs text-orange-600 font-semibold">Mechanical Engineer</p>

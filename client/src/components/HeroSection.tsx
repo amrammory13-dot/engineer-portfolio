@@ -49,12 +49,12 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/hero-bg.jpg)',
+          backgroundImage: 'url(/images/hero-background.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/90 via-blue-800/80 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-800/75 to-transparent" />
       </div>
 
       {/* Geometric Accent Lines */}
@@ -75,17 +75,17 @@ export default function HeroSection() {
       >
         {/* Main Heading */}
         <motion.div variants={itemVariants} className="text-center mb-6 max-w-4xl">
-          <h1 className="text-white text-5xl md:text-7xl font-bold mb-4 leading-tight">
+          <h1 className="text-white text-5xl md:text-7xl font-bold mb-4 leading-tight drop-shadow-lg">
             Amr Ammory
           </h1>
-          <p className="text-orange-400 text-xl md:text-2xl font-semibold mb-2">
+          <p className="text-orange-400 text-xl md:text-2xl font-semibold mb-2 drop-shadow-md">
             Mechanical Engineer
           </p>
         </motion.div>
 
         {/* Subtitle */}
         <motion.div variants={itemVariants} className="text-center max-w-2xl mb-12">
-          <p className="text-gray-200 text-lg md:text-xl leading-relaxed">
+          <p className="text-gray-100 text-lg md:text-xl leading-relaxed drop-shadow-md">
             Specializing in Advanced Mechanical Design and Precision Manufacturing
             with expertise in SolidWorks, ANSYS, and AutoCAD
           </p>

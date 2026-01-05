@@ -9,10 +9,11 @@ import { useLanguage } from '@/contexts/LanguageContext';
  * - Social media links
  * - Copyright information
  * - Responsive layout
+ * - FULLY BILINGUAL: All text uses translations for Arabic/English support
  */
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const containerVariants = {
@@ -61,27 +62,27 @@ export default function Footer() {
               <ul className="space-y-2 text-sm">
                 <li>
                   <a href="#about" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
-                    About Me
+                    {t('nav.about')}
                   </a>
                 </li>
                 <li>
                   <a href="#skills" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
-                    Skills
+                    {t('nav.skills')}
                   </a>
                 </li>
                 <li>
                   <a href="#projects" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
-                    Projects
+                    {t('nav.projects')}
                   </a>
                 </li>
                 <li>
                   <a href="#experience" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
-                    Experience
+                    {t('nav.experience')}
                   </a>
                 </li>
                 <li>
                   <a href="#contact" className="text-gray-400 hover:text-orange-400 transition-colors duration-300">
-                    Contact
+                    {t('nav.contact')}
                   </a>
                 </li>
               </ul>
@@ -118,7 +119,7 @@ export default function Footer() {
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
               {/* Copyright */}
               <p className="text-gray-400 text-sm">
-                &copy; {currentYear} Amr Ammory. All rights reserved.
+                {t('footer.copyright')}
               </p>
 
               {/* Social Links */}
@@ -145,7 +146,7 @@ export default function Footer() {
 
           {/* Design Credit */}
           <motion.div variants={itemVariants} className="text-center text-xs text-gray-500 pt-4">
-            <p>Designed with precision and built with passion for engineering excellence</p>
+            <p>{t('footer.designed')}</p>
           </motion.div>
         </div>
       </motion.div>

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Award, Briefcase, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/locales/translations';
 
 /**
  * Experience and Certifications Section Component
@@ -9,66 +10,69 @@ import { useLanguage } from '@/contexts/LanguageContext';
  * - Certification cards with icons
  * - Responsive grid layout
  * - Hover effects and animations
+ * - FULLY BILINGUAL: All text uses translations for Arabic/English support
  */
 
 export default function ExperienceSection() {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
+  const t = translations[language].experience;
+
   const experiences = [
     {
-      title: 'Precision Mechanical Parts Designer & Producer',
-      company: 'PROFI CAR (Germany)',
-      description: 'Designed and manufactured high-precision mechanical components, contributing to 100% improvement in product quality.',
+      titleKey: 'precisionDesigner',
+      companyKey: 'profiCar',
+      descKey: 'precisionDesc',
       highlights: ['High-precision design', 'Quality improvement', 'Manufacturing excellence'],
     },
     {
-      title: 'Automotive Engineering & Aluminum Workshop Trainee',
-      company: 'Technical Training Program',
-      description: 'Gained intensive and comprehensive practical experience in automotive maintenance and aluminum fabrication.',
+      titleKey: 'automotive',
+      companyKey: 'trainingProgram',
+      descKey: 'automotiveDesc',
       highlights: ['Automotive maintenance', 'Aluminum fabrication', 'Industrial processes'],
     },
     {
-      title: 'Visual Content Manager & Marketing Video Producer',
-      company: 'Digital Marketing Initiative',
-      description: 'Managed visual content and produced engaging marketing videos, leading to 100% increase in social media engagement.',
+      titleKey: 'visualContent',
+      companyKey: 'digitalMarketing',
+      descKey: 'visualDesc',
       highlights: ['Video production', 'Content management', 'Social media strategy'],
     },
     {
-      title: 'Engineering Project Leader',
-      company: 'Multiple Projects',
-      description: 'Led engineering projects successfully and implemented innovative solutions, resulting in 100% team productivity improvement.',
+      titleKey: 'projectLeader',
+      companyKey: 'multipleProjects',
+      descKey: 'leaderDesc',
       highlights: ['Project leadership', 'Innovation', 'Team management'],
     },
   ];
 
   const certifications = [
     {
-      title: 'SolidWorks Certified Engineer',
-      issuer: 'Engineers Syndicate',
+      titleKey: 'solidworks',
+      issuerKey: 'engineers',
       icon: Award,
     },
     {
-      title: 'Mentorship Program for Project Management',
-      issuer: 'PMI (September 14-29, 2025)',
+      titleKey: 'mentorship',
+      issuerKey: 'pmi',
       icon: Briefcase,
     },
     {
-      title: 'Higher Education Certificate in English',
-      issuer: 'Professional Proficiency',
+      titleKey: 'english',
+      issuerKey: 'proficiency',
       icon: CheckCircle,
     },
     {
-      title: 'Business Management Training Certificate',
-      issuer: 'ScaleUp',
+      titleKey: 'business',
+      issuerKey: 'scaleup',
       icon: Award,
     },
     {
-      title: 'Advanced Project Management Certificate',
-      issuer: 'Professional Development',
+      titleKey: 'advanced',
+      issuerKey: 'development',
       icon: Briefcase,
     },
     {
-      title: 'Automotive Maintenance Excellence Certificate',
-      issuer: 'NRC Norway',
+      titleKey: 'automotive2',
+      issuerKey: 'nrc',
       icon: CheckCircle,
     },
   ];
@@ -94,7 +98,7 @@ export default function ExperienceSection() {
   };
 
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -108,7 +112,7 @@ export default function ExperienceSection() {
             <div className="flex items-center gap-4 mb-12">
               <div className="w-1 h-10 bg-orange-600 rounded-full" />
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                {t('experience.title')}
+                {t.title}
               </h2>
             </div>
 
@@ -121,13 +125,19 @@ export default function ExperienceSection() {
                   className="relative pl-8 border-l-2 border-orange-600 pb-8"
                 >
                   {/* Timeline Dot */}
-                  <div className="absolute -left-4 top-0 w-6 h-6 bg-orange-600 rounded-full border-4 border-white dark:border-gray-900" />
+                  <div className="absolute -left-4 top-0 w-6 h-6 bg-orange-600 rounded-full border-4 border-white dark:border-slate-900" />
 
                   {/* Content */}
-                  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{exp.title}</h3>
-                    <p className="text-orange-600 dark:text-orange-400 font-semibold mb-3">{exp.company}</p>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{exp.description}</p>
+                  <div className="bg-white dark:bg-slate-800 p-6 rounded-lg border border-gray-200 dark:border-slate-700 hover:shadow-lg transition-shadow duration-300">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                      {t[exp.titleKey as keyof typeof t]}
+                    </h3>
+                    <p className="text-orange-600 dark:text-orange-400 font-semibold mb-3">
+                      {t[exp.companyKey as keyof typeof t]}
+                    </p>
+                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                      {t[exp.descKey as keyof typeof t]}
+                    </p>
 
                     {/* Highlights */}
                     <div className="flex flex-wrap gap-2">
@@ -150,8 +160,8 @@ export default function ExperienceSection() {
           <motion.div variants={itemVariants}>
             <div className="flex items-center gap-4 mb-12">
               <div className="w-1 h-10 bg-orange-600 rounded-full" />
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Certifications & Training
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                {t.certifications}
               </h2>
             </div>
 
@@ -166,15 +176,19 @@ export default function ExperienceSection() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="p-6 bg-white rounded-lg border border-gray-200 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                    className="p-6 bg-white dark:bg-slate-800 rounded-lg border border-gray-200 dark:border-slate-700 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                   >
                     <div className="flex items-start gap-4 mb-4">
-                      <div className="p-3 bg-orange-100 rounded-lg">
-                        <Icon className="w-6 h-6 text-orange-600" />
+                      <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
+                        <Icon className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="font-bold text-gray-900">{cert.title}</h3>
-                        <p className="text-sm text-gray-600 mt-1">{cert.issuer}</p>
+                        <h3 className="font-bold text-gray-900 dark:text-white">
+                          {t[cert.titleKey as keyof typeof t]}
+                        </h3>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                          {t[cert.issuerKey as keyof typeof t]}
+                        </p>
                       </div>
                     </div>
                   </motion.div>
@@ -184,16 +198,18 @@ export default function ExperienceSection() {
           </motion.div>
 
           {/* Education Section */}
-          <motion.div variants={itemVariants} className="mt-20 p-8 bg-blue-50 rounded-lg">
-            <h3 className="text-2xl font-bold text-gray-900 mb-4">Education</h3>
+          <motion.div variants={itemVariants} className="mt-20 p-8 bg-blue-50 dark:bg-slate-800 rounded-lg">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              {t.education}
+            </h3>
             <div className="space-y-4">
               <div>
-                <h4 className="text-lg font-semibold text-blue-900">
-                  Mechanical Engineering Student, Fifth Year
+                <h4 className="text-lg font-semibold text-blue-900 dark:text-blue-300">
+                  {t.mechanical}
                 </h4>
-                <p className="text-gray-700">Aleppo University (2021-2026)</p>
-                <p className="text-sm text-gray-600 mt-2">
-                  Awarded first place in the Mechanical Engineering Department for consistent academic excellence
+                <p className="text-gray-700 dark:text-gray-300">{t.aleppo}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mt-2">
+                  {t.award}
                 </p>
               </div>
             </div>

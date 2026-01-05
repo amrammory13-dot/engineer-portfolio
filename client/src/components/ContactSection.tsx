@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Linkedin, Github } from 'lucide-react';
+import { Mail, Phone, MapPin, Linkedin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { translations } from '@/locales/translations';
 
 /**
  * Contact Section Component
@@ -11,10 +12,12 @@ import { useLanguage } from '@/contexts/LanguageContext';
  * - Contact form with validation
  * - Social media links
  * - Responsive layout
+ * - FULLY BILINGUAL: All text uses translations for Arabic/English support
  */
 
 export default function ContactSection() {
-  const { t } = useLanguage();
+  const { language } = useLanguage();
+  const t = translations[language].contact;
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -94,7 +97,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="relative py-20 md:py-32 bg-white">
+    <section className="relative py-20 md:py-32 bg-white dark:bg-slate-900">
       <div className="container mx-auto px-4">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -108,19 +111,21 @@ export default function ContactSection() {
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="w-1 h-8 bg-orange-600 rounded-full" />
               <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-                {t('contact.title')}
+                {t.title}
               </h2>
               <div className="w-1 h-8 bg-orange-600 rounded-full" />
             </div>
             <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              {t('contact.subtitle')}
+              {t.subtitle}
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Contact Information */}
             <motion.div variants={itemVariants} className="space-y-8">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">{t('contact.contactInfo')}</h3>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+                {t.contactInfo}
+              </h3>
 
               {/* Contact Details */}
               <div className="space-y-6">
@@ -131,14 +136,18 @@ export default function ContactSection() {
                       key={index}
                       href={info.link}
                       variants={itemVariants}
-                      className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-300"
+                      className="flex items-start gap-4 p-4 rounded-lg hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors duration-300"
                     >
                       <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
                         <Icon className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                       </div>
                       <div>
-                        <p className="text-sm font-semibold text-gray-600 dark:text-gray-400">{info.label}</p>
-                        <p className="text-lg font-bold text-gray-900 dark:text-white">{info.value}</p>
+                        <p className="text-sm font-semibold text-gray-600 dark:text-gray-400">
+                          {info.label}
+                        </p>
+                        <p className="text-lg font-bold text-gray-900 dark:text-white">
+                          {info.value}
+                        </p>
                       </div>
                     </motion.a>
                   );
@@ -146,8 +155,10 @@ export default function ContactSection() {
               </div>
 
               {/* Social Links */}
-              <div className="pt-8 border-t border-gray-200">
-                <h4 className="text-lg font-bold text-gray-900 mb-4">Connect With Me</h4>
+              <div className="pt-8 border-t border-gray-200 dark:border-slate-700">
+                <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+                  {t.connectWithMe}
+                </h4>
                 <div className="flex gap-4">
                   {socialLinks.map((social, index) => {
                     const Icon = social.icon;
@@ -158,7 +169,7 @@ export default function ContactSection() {
                         target="_blank"
                         rel="noopener noreferrer"
                         variants={itemVariants}
-                        className="p-3 bg-gray-100 rounded-lg hover:bg-orange-600 hover:text-white transition-all duration-300"
+                        className="p-3 bg-gray-100 dark:bg-slate-800 rounded-lg hover:bg-orange-600 hover:text-white transition-all duration-300"
                         title={social.label}
                       >
                         <Icon className="w-6 h-6" />
@@ -170,14 +181,19 @@ export default function ContactSection() {
             </motion.div>
 
             {/* Contact Form */}
-            <motion.div variants={itemVariants} className="bg-gray-50 p-8 rounded-lg">
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Send Me a Message</h3>
+            <motion.div
+              variants={itemVariants}
+              className="bg-gray-50 dark:bg-slate-800 p-8 rounded-lg"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+                {t.sendMessage}
+              </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Full Name
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {language === 'ar' ? 'الاسم الكامل' : 'Full Name'}
                   </label>
                   <input
                     type="text"
@@ -185,15 +201,15 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300"
-                    placeholder="Your name"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300"
+                    placeholder={t.name}
                   />
                 </div>
 
                 {/* Email Field */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Email Address
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {language === 'ar' ? 'عنوان البريد الإلكتروني' : 'Email Address'}
                   </label>
                   <input
                     type="email"
@@ -201,15 +217,15 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300"
-                    placeholder="your.email@example.com"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300"
+                    placeholder={t.email}
                   />
                 </div>
 
                 {/* Subject Field */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Subject
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {language === 'ar' ? 'الموضوع' : 'Subject'}
                   </label>
                   <input
                     type="text"
@@ -217,15 +233,15 @@ export default function ContactSection() {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300"
-                    placeholder="Project inquiry"
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300"
+                    placeholder={t.subject}
                   />
                 </div>
 
                 {/* Message Field */}
                 <div>
-                  <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Message
+                  <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                    {language === 'ar' ? 'الرسالة' : 'Message'}
                   </label>
                   <textarea
                     name="message"
@@ -233,8 +249,8 @@ export default function ContactSection() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300 resize-none"
-                    placeholder="Tell me about your project..."
+                    className="w-full px-4 py-2 border border-gray-300 dark:border-slate-600 dark:bg-slate-700 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-600 transition-ring duration-300 resize-none"
+                    placeholder={t.message}
                   />
                 </div>
 
@@ -243,7 +259,7 @@ export default function ContactSection() {
                   type="submit"
                   className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 font-semibold transition-all duration-300"
                 >
-                  Send Message
+                  {t.send}
                 </Button>
 
                 {/* Success Message */}
@@ -251,9 +267,11 @@ export default function ContactSection() {
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-700 text-sm"
+                    className="p-4 bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-700 rounded-lg text-green-700 dark:text-green-300 text-sm"
                   >
-                    Thank you for your message! I'll get back to you soon.
+                    {language === 'ar'
+                      ? 'شكراً لرسالتك! سأرد عليك قريباً.'
+                      : "Thank you for your message! I'll get back to you soon."}
                   </motion.div>
                 )}
               </form>

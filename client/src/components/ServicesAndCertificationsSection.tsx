@@ -1,6 +1,7 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
 import { Award, FileText, Users, CheckCircle, Briefcase, Shield } from 'lucide-react';
+import { translations } from '@/locales/translations';
 
 /**
  * Services & Certifications Section Component
@@ -9,26 +10,30 @@ import { Award, FileText, Users, CheckCircle, Briefcase, Shield } from 'lucide-r
  * - Professional cards with icons and achievements
  * - Emphasis on ATS optimization expertise and client success
  * - Responsive grid layout with hover effects
+ * - FULLY BILINGUAL: All text uses useLanguage hook for Arabic/English support
  */
 
 export default function ServicesAndCertificationsSection() {
+  const { language } = useLanguage();
+  const t = translations[language].services;
+
   const services = [
     {
       icon: FileText,
-      title: 'ATS-Optimized CV Creation',
-      description: 'Crafting 100% ATS-compatible CVs that pass automated screening systems',
-      stats: '50+ CVs Created',
-      achievement: 'All clients achieved 90%+ ATS compatibility score',
+      titleKey: 'atsOptimized',
+      descKey: 'atsDesc',
+      statsKey: 'atsCount',
+      achievementKey: 'atsAchievement',
       color: 'from-orange-50 to-orange-100',
       borderColor: 'border-orange-300',
       iconBg: 'bg-orange-600',
     },
     {
       icon: CheckCircle,
-      title: 'CV Optimization Expertise',
-      description: 'Professional CV design with 100% ATS compliance and keyword optimization',
-      stats: '90%+ Success Rate',
-      achievement: 'Verified ATS system testing and validation for all deliverables',
+      titleKey: 'cvOptimization',
+      descKey: 'cvDesc',
+      statsKey: 'cvRate',
+      achievementKey: 'cvValidation',
       color: 'from-blue-50 to-blue-100',
       borderColor: 'border-blue-300',
       iconBg: 'bg-blue-900',
@@ -38,23 +43,23 @@ export default function ServicesAndCertificationsSection() {
   const certifications = [
     {
       icon: Award,
-      title: 'PMP Certification',
-      issuer: 'Project Management Institute (PMI)',
-      description: 'Professional Project Management Certification - Multilingual Credential',
+      titleKey: 'pmpTitle',
+      issuerKey: 'pmpIssuer',
+      descKey: 'pmpDesc',
       verified: true,
     },
     {
       icon: Users,
-      title: 'HRM Certifications',
-      issuer: 'Human Resource Management',
-      description: 'Multiple certifications in Human Resource Management and organizational development',
+      titleKey: 'hrmTitle',
+      issuerKey: 'hrmIssuer',
+      descKey: 'hrmDesc',
       verified: true,
     },
     {
       icon: Shield,
-      title: 'ATS System Auditor',
-      issuer: 'Specialized Certification',
-      description: 'Certified ATS system auditor - Verifies CV compatibility with automated tracking systems',
+      titleKey: 'atsAuditor',
+      issuerKey: 'atsAuditorIssuer',
+      descKey: 'atsAuditorDesc',
       verified: true,
     },
   ];
@@ -80,7 +85,7 @@ export default function ServicesAndCertificationsSection() {
   };
 
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white">
+    <section className="relative py-20 md:py-32 bg-gradient-to-b from-gray-50 to-white dark:from-slate-900 dark:to-slate-800">
       <div className="container mx-auto px-4">
         <motion.div
           className="max-w-6xl mx-auto"
@@ -93,14 +98,13 @@ export default function ServicesAndCertificationsSection() {
           <motion.div variants={itemVariants} className="mb-16 md:mb-24 text-center">
             <div className="flex items-center justify-center gap-4 mb-6">
               <div className="w-1 h-10 bg-orange-600 rounded-full" />
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
-                Specialized Services & Credentials
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+                {t.title}
               </h2>
               <div className="w-1 h-10 bg-orange-600 rounded-full" />
             </div>
-            <p className="text-lg text-gray-600 leading-relaxed max-w-3xl mx-auto">
-              Beyond mechanical engineering, I offer specialized expertise in CV optimization and professional certifications
-              in project management and human resource management.
+            <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed max-w-3xl mx-auto">
+              {t.subtitle}
             </p>
           </motion.div>
 
@@ -116,22 +120,28 @@ export default function ServicesAndCertificationsSection() {
                   key={index}
                   variants={itemVariants}
                   whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-                  className={`p-8 bg-gradient-to-br ${service.color} rounded-lg border-2 ${service.borderColor} transition-all duration-300`}
+                  className={`p-8 bg-gradient-to-br ${service.color} dark:from-slate-800 dark:to-slate-700 rounded-lg border-2 ${service.borderColor} dark:border-slate-600 transition-all duration-300`}
                 >
                   <div className="flex items-start gap-4 mb-6">
                     <div className={`p-4 ${service.iconBg} rounded-lg flex-shrink-0`}>
                       <Icon className="w-7 h-7 text-white" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">{service.title}</h3>
-                      <p className="text-sm font-semibold text-orange-600">{service.stats}</p>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                        {t[service.titleKey as keyof typeof t]}
+                      </h3>
+                      <p className="text-sm font-semibold text-orange-600 dark:text-orange-400">
+                        {t[service.statsKey as keyof typeof t]}
+                      </p>
                     </div>
                   </div>
-                  <p className="text-gray-700 mb-4 leading-relaxed">{service.description}</p>
-                  <div className="pt-4 border-t-2 border-gray-300 border-opacity-50">
-                    <p className="text-sm text-gray-600 flex items-center gap-2">
+                  <p className="text-gray-700 dark:text-gray-300 mb-4 leading-relaxed">
+                    {t[service.descKey as keyof typeof t]}
+                  </p>
+                  <div className="pt-4 border-t-2 border-gray-300 dark:border-slate-600 border-opacity-50">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-green-600" />
-                      {service.achievement}
+                      {t[service.achievementKey as keyof typeof t]}
                     </p>
                   </div>
                 </motion.div>
@@ -141,9 +151,9 @@ export default function ServicesAndCertificationsSection() {
 
           {/* Certifications Section */}
           <motion.div variants={itemVariants} className="mb-16">
-            <h3 className="text-3xl font-bold text-gray-900 mb-8 flex items-center gap-4">
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 flex items-center gap-4">
               <span className="w-1 h-8 bg-orange-600 rounded-full" />
-              Professional Certifications
+              {t.certifications}
             </h3>
             <motion.div
               className="grid grid-cols-1 md:grid-cols-3 gap-6"
@@ -156,24 +166,30 @@ export default function ServicesAndCertificationsSection() {
                     key={index}
                     variants={itemVariants}
                     whileHover={{ y: -6, boxShadow: '0 15px 35px rgba(0,0,0,0.08)' }}
-                    className="p-6 bg-white rounded-lg border-2 border-gray-200 hover:border-orange-400 transition-all duration-300"
+                    className="p-6 bg-white dark:bg-slate-800 rounded-lg border-2 border-gray-200 dark:border-slate-700 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300"
                   >
                     <div className="flex items-center gap-3 mb-4">
-                      <div className="p-3 bg-orange-100 rounded-lg">
-                        <Icon className="w-6 h-6 text-orange-600" />
+                      <div className="p-3 bg-orange-100 dark:bg-orange-900 rounded-lg">
+                        <Icon className="w-6 h-6 text-orange-600 dark:text-orange-400" />
                       </div>
                       {cert.verified && (
                         <div className="ml-auto">
-                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">
+                          <span className="inline-flex items-center gap-1 px-3 py-1 bg-green-100 dark:bg-green-900 text-green-700 dark:text-green-300 text-xs font-bold rounded-full">
                             <CheckCircle className="w-3 h-3" />
-                            Verified
+                            {language === 'ar' ? 'معتمد' : 'Verified'}
                           </span>
                         </div>
                       )}
                     </div>
-                    <h4 className="text-lg font-bold text-gray-900 mb-2">{cert.title}</h4>
-                    <p className="text-sm text-orange-600 font-semibold mb-3">{cert.issuer}</p>
-                    <p className="text-sm text-gray-600 leading-relaxed">{cert.description}</p>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      {t[cert.titleKey as keyof typeof t]}
+                    </h4>
+                    <p className="text-sm text-orange-600 dark:text-orange-400 font-semibold mb-3">
+                      {t[cert.issuerKey as keyof typeof t]}
+                    </p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {t[cert.descKey as keyof typeof t]}
+                    </p>
                   </motion.div>
                 );
               })}
@@ -183,11 +199,11 @@ export default function ServicesAndCertificationsSection() {
           {/* Key Highlights */}
           <motion.div
             variants={itemVariants}
-            className="bg-gradient-to-r from-blue-900 to-blue-800 rounded-lg p-8 md:p-12 text-white"
+            className="bg-gradient-to-r from-blue-900 to-blue-800 dark:from-blue-950 dark:to-blue-900 rounded-lg p-8 md:p-12 text-white"
           >
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
               <Briefcase className="w-7 h-7" />
-              Why Choose My CV Services?
+              {t.whyChoose}
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.div whileHover={{ x: 5 }} className="flex gap-4">
@@ -197,9 +213,9 @@ export default function ServicesAndCertificationsSection() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-2">100% ATS Compatible</h4>
+                  <h4 className="text-lg font-semibold mb-2">{t.compatible}</h4>
                   <p className="text-blue-100">
-                    Every CV is tested and verified to pass automated tracking systems with 90%+ compatibility scores.
+                    {t.compatibleDesc}
                   </p>
                 </div>
               </motion.div>
@@ -210,9 +226,9 @@ export default function ServicesAndCertificationsSection() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-2">50+ Success Stories</h4>
+                  <h4 className="text-lg font-semibold mb-2">{t.stories}</h4>
                   <p className="text-blue-100">
-                    Over 50 clients have benefited from optimized CVs with verified ATS compatibility testing.
+                    {t.storiesDesc}
                   </p>
                 </div>
               </motion.div>
@@ -223,9 +239,9 @@ export default function ServicesAndCertificationsSection() {
                   </div>
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold mb-2">Professional Expertise</h4>
+                  <h4 className="text-lg font-semibold mb-2">{t.expertise}</h4>
                   <p className="text-blue-100">
-                    Certified in project management and HR, bringing professional standards to every CV created.
+                    {t.expertiseDesc}
                   </p>
                 </div>
               </motion.div>

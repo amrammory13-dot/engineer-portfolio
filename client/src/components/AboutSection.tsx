@@ -20,27 +20,27 @@ export default function AboutSection() {
   const stats = [
     {
       icon: Code2,
-      label: 'Projects Completed',
+      label: language === 'ar' ? 'المشاريع المنجزة' : 'Projects Completed',
       value: '50+',
-      description: 'Design projects with 100% ASME/ISO compliance',
+      description: language === 'ar' ? t('about.stats.projects') : t('about.stats.projects'),
     },
     {
       icon: Award,
-      label: 'Certifications',
+      label: language === 'ar' ? 'الشهادات' : 'Certifications',
       value: '6+',
-      description: 'Professional certifications and training',
+      description: language === 'ar' ? t('about.stats.certifications') : t('about.stats.certifications'),
     },
     {
       icon: Briefcase,
-      label: 'Years Experience',
+      label: language === 'ar' ? 'سنوات الخبرة' : 'Years Experience',
       value: '5',
-      description: 'In mechanical engineering and design',
+      description: language === 'ar' ? t('about.stats.experience') : t('about.stats.experience'),
     },
     {
       icon: Users,
-      label: 'Team Leadership',
+      label: language === 'ar' ? 'قيادة الفريق' : 'Team Leadership',
       value: '100%',
-      description: 'Project goal achievement rate',
+      description: language === 'ar' ? t('about.stats.achievement') : t('about.stats.achievement'),
     },
   ];
 

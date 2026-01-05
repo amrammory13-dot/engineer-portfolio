@@ -11,10 +11,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
  */
 
 export default function SkillsSection() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const skillCategories = [
     {
-      title: 'Advanced Engineering Design',
+      title: language === 'ar' ? t('skills.advancedDesign') : 'Advanced Engineering Design',
       skills: [
         { name: 'SolidWorks', level: 95 },
         { name: 'AutoCAD', level: 90 },
@@ -22,43 +22,43 @@ export default function SkillsSection() {
       ],
     },
     {
-      title: 'Engineering Analysis & Simulation',
+      title: language === 'ar' ? t('skills.engineeringAnalysis') : 'Engineering Analysis & Simulation',
       skills: [
         { name: 'ANSYS FEA', level: 92 },
-        { name: 'Stress Analysis', level: 90 },
-        { name: 'Mechanical Systems', level: 88 },
+        { name: language === 'ar' ? t('skills.stressAnalysis') : 'Stress Analysis', level: 90 },
+        { name: language === 'ar' ? t('skills.mechanicalSystems') : 'Mechanical Systems', level: 88 },
       ],
     },
     {
-      title: 'Technical Documentation',
+      title: language === 'ar' ? t('skills.technicalDoc') : 'Technical Documentation',
       skills: [
-        { name: 'Engineering Drawings', level: 95 },
-        { name: 'ASME Standards', level: 93 },
-        { name: 'ISO Compliance', level: 93 },
+        { name: language === 'ar' ? t('skills.engineeringDrawings') : 'Engineering Drawings', level: 95 },
+        { name: language === 'ar' ? t('skills.asmeStandards') : 'ASME Standards', level: 93 },
+        { name: language === 'ar' ? t('skills.isoCompliance') : 'ISO Compliance', level: 93 },
       ],
     },
     {
-      title: 'Project Management',
+      title: language === 'ar' ? t('skills.projectMgmt') : 'Project Management',
       skills: [
-        { name: 'Strategic Planning', level: 90 },
-        { name: 'Team Leadership', level: 88 },
-        { name: 'Process Optimization', level: 92 },
+        { name: language === 'ar' ? t('skills.strategicPlanning') : 'Strategic Planning', level: 90 },
+        { name: language === 'ar' ? t('skills.teamLeadership') : 'Team Leadership', level: 88 },
+        { name: language === 'ar' ? t('skills.processOptimization') : 'Process Optimization', level: 92 },
       ],
     },
     {
-      title: 'Digital Content & Marketing',
+      title: language === 'ar' ? t('skills.digitalContent') : 'Digital Content & Marketing',
       skills: [
-        { name: 'Video Editing', level: 85 },
-        { name: 'Graphic Design', level: 82 },
-        { name: 'Social Media', level: 88 },
+        { name: language === 'ar' ? t('skills.videoEditing') : 'Video Editing', level: 85 },
+        { name: language === 'ar' ? t('skills.graphicDesign') : 'Graphic Design', level: 82 },
+        { name: language === 'ar' ? t('skills.socialMedia') : 'Social Media', level: 88 },
       ],
     },
     {
-      title: 'Professional Skills',
+      title: language === 'ar' ? t('skills.professionalSkills') : 'Professional Skills',
       skills: [
-        { name: 'Problem Solving', level: 95 },
-        { name: 'Critical Thinking', level: 92 },
-        { name: 'Communication', level: 90 },
+        { name: language === 'ar' ? t('skills.problemSolving') : 'Problem Solving', level: 95 },
+        { name: language === 'ar' ? t('skills.criticalThinking') : 'Critical Thinking', level: 92 },
+        { name: language === 'ar' ? t('skills.communication') : 'Communication', level: 90 },
       ],
     },
   ];

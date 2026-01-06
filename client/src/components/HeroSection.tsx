@@ -124,7 +124,7 @@ export default function HeroSection() {
       </motion.div>
 
       {/* Decorative Elements */}
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white to-transparent z-5" />
+      <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white dark:from-slate-900 to-transparent z-5 transition-colors duration-300" />
     </section>
   );
 }

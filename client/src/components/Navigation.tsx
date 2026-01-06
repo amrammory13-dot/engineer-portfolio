@@ -57,8 +57,8 @@ export default function Navigation() {
               className="w-12 h-12 rounded-lg object-cover shadow-md"
             />
             <div className="hidden sm:block">
-              <p className="text-sm font-bold text-gray-900">Amr Ammory</p>
-              <p className="text-xs text-orange-600 font-semibold">Mechanical Engineer</p>
+              <p className="text-sm font-bold text-gray-900 dark:text-white transition-colors duration-300">Amr Ammory</p>
+              <p className="text-xs text-orange-600 dark:text-orange-400 font-semibold transition-colors duration-300">Mechanical Engineer</p>
             </div>
           </motion.div>
 
@@ -186,7 +186,7 @@ export default function Navigation() {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: (navItems.length + 1) * 0.05 }}
             >
-              Contact Me
+              {t('nav.contactMe')}
             </motion.button>
           </div>
         </motion.div>

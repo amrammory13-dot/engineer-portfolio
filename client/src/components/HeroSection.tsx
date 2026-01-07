@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useDarkMode } from '@/contexts/DarkModeContext';
 
 /**
  * Hero Section Component
@@ -14,6 +15,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HeroSection() {
   const { language, t } = useLanguage();
+  const { isDarkMode } = useDarkMode();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -56,7 +58,11 @@ export default function HeroSection() {
           backgroundPosition: 'center',
         }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/85 via-gray-800/75 to-transparent" />
+        <div className={`absolute inset-0 transition-colors duration-300 ${
+          isDarkMode
+            ? 'bg-gradient-to-r from-gray-900/85 via-gray-800/75 to-transparent'
+            : 'bg-gradient-to-r from-gray-900/15 via-gray-800/10 to-transparent'
+        }`} />
       </div>
 
       {/* Geometric Accent Lines */}

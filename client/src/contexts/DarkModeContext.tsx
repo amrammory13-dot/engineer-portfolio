@@ -14,8 +14,8 @@ export function DarkModeProvider({ children }: { children: React.ReactNode }) {
     if (saved !== null) {
       return JSON.parse(saved);
     }
-    // Check system preference
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    // Default to light mode (false)
+    return false;
   });
 
   useEffect(() => {

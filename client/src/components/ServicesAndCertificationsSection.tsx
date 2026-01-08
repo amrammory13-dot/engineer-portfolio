@@ -1,7 +1,7 @@
-import { useLanguage } from '@/contexts/LanguageContext';
 import { motion } from 'framer-motion';
-import { Award, FileText, Users, CheckCircle, Briefcase, Shield } from 'lucide-react';
+import { Award, FileText, Users, CheckCircle, Briefcase, Shield, Mic, Presentation, Palette } from 'lucide-react';
 import { translations } from '@/locales/translations';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 /**
  * Services & Certifications Section Component
@@ -18,6 +18,36 @@ export default function ServicesAndCertificationsSection() {
   const t = translations[language].services;
 
   const services = [
+    {
+      icon: Mic,
+      titleKey: 'voiceOverTitle',
+      descKey: 'voiceOverDesc',
+      statsKey: 'voiceOverLayers',
+      achievementKey: 'voiceOverTypes',
+      color: 'from-purple-50 to-purple-100',
+      borderColor: 'border-purple-300',
+      iconBg: 'bg-purple-600',
+    },
+    {
+      icon: Presentation,
+      titleKey: 'powerpointTitle',
+      descKey: 'powerpointDesc',
+      statsKey: 'powerpointService',
+      achievementKey: 'powerpointQuality',
+      color: 'from-red-50 to-red-100',
+      borderColor: 'border-red-300',
+      iconBg: 'bg-red-600',
+    },
+    {
+      icon: Palette,
+      titleKey: 'canvaTitle',
+      descKey: 'canvaDesc',
+      statsKey: 'canvaProjects',
+      achievementKey: 'canvaExpertise',
+      color: 'from-cyan-50 to-cyan-100',
+      borderColor: 'border-cyan-300',
+      iconBg: 'bg-cyan-600',
+    },
     {
       icon: FileText,
       titleKey: 'atsOptimized',

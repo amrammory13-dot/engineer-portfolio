@@ -94,6 +94,7 @@ export default function AboutSection() {
                 onClick={() => setDownloadClicked(true)}
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors duration-300 shadow-md hover:shadow-lg cursor-pointer"
               >
+                Download My CV - English
                 <motion.div
                   animate={downloadClicked ? { y: [0, -5, 0] } : {}}
                   transition={{ duration: 0.6 }}
@@ -101,7 +102,6 @@ export default function AboutSection() {
                 >
                   <Download className="w-5 h-5" />
                 </motion.div>
-                {t('about.downloadCV')}
               </motion.a>
               <motion.a
                 href="/Amr_Ammory_CV_Arabic.pdf"
@@ -109,8 +109,9 @@ export default function AboutSection() {
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setDownloadClickedAr(true)}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-900 text-white font-semibold rounded-lg hover:bg-blue-800 transition-colors duration-300 shadow-md hover:shadow-lg cursor-pointer"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-orange-600 text-white font-semibold rounded-lg hover:bg-orange-700 transition-colors duration-300 shadow-md hover:shadow-lg cursor-pointer"
               >
+                Download My CV - Arabic
                 <motion.div
                   animate={downloadClickedAr ? { y: [0, -5, 0] } : {}}
                   transition={{ duration: 0.6 }}
@@ -118,7 +119,6 @@ export default function AboutSection() {
                 >
                   <Download className="w-5 h-5" />
                 </motion.div>
-                {t('about.downloadCVAr')}
               </motion.a>
             </div>
           </motion.div>

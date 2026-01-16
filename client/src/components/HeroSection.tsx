@@ -53,15 +53,15 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/hero-background.jpg)',
+          backgroundImage: 'url(/images/hero-bg.png)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       >
         <div className={`absolute inset-0 transition-colors duration-300 ${
           isDarkMode
-            ? 'bg-gradient-to-r from-gray-900/85 via-gray-800/75 to-transparent'
-            : 'bg-gradient-to-r from-gray-900/15 via-gray-800/10 to-transparent'
+            ? 'bg-black/60'
+            : 'bg-black/40'
         }`} />
       </div>
 

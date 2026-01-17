@@ -3,6 +3,7 @@ import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useDarkMode } from '@/contexts/DarkModeContext';
+import heroBg from '/images/hero-bg.png';
 
 /**
  * Hero Section Component
@@ -53,7 +54,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 z-0"
         style={{
-          backgroundImage: 'url(/images/hero-bg.png)',
+          backgroundImage: `url(${heroBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}

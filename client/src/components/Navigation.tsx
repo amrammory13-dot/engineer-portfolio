@@ -191,18 +191,22 @@ export default function Navigation() {
             )}
           </motion.button>
 
-          {/* Mobile Menu Button */}
-          <motion.button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-300 cursor-pointer"
-            whileTap={{ scale: 0.95 }}
+          {/* Mobile Menu Button - Improved responsiveness */}
+          <button
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              setIsOpen(!isOpen);
+            }}
+            className="md:hidden p-3 -mr-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors duration-200 cursor-pointer z-[60] touch-manipulation"
+            aria-label="Toggle menu"
           >
             {isOpen ? (
-              <X className="w-6 h-6 text-gray-900 dark:text-gray-50" />
+              <X className="w-7 h-7 text-gray-900 dark:text-gray-50" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-900 dark:text-gray-50" />
+              <Menu className="w-7 h-7 text-gray-900 dark:text-gray-50" />
             )}
-          </motion.button>
+          </button>
         </div>
 
         {/* Mobile Navigation Menu */}

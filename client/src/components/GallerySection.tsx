@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { X, ChevronLeft, ChevronRight, Download, ExternalLink } from 'lucide-react';
 import Zoom from 'react-medium-image-zoom';
-import 'react-medium-image-zoom/lib/styles.css';
+import 'react-medium-image-zoom/dist/styles.css';
 
 /**
  * Gallery Section Component - Professional Engineering Portfolio Gallery

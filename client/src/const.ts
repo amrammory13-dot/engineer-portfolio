@@ -50,7 +50,7 @@ export const PROJECT_LINKS = {
 export const ALL_PROJECTS = [
   {
     id: '1',
-    title: { en: 'Stair Climber Wheelchair', ar: 'كرسي متحرك متسلق للدرج' },
+    title: { en: 'Stair Climber Wheelchair - Design 1', ar: 'كرسي متحرك متسلق للدرج - تصميم 1' },
     category: 'CAD Design',
     image: 'https://drive.google.com/uc?export=view&id=1Wfyg8_uTFyDw54FdCys_aAGVu2-29Kxd',
     tags: ['SolidWorks', 'Mechanism', 'Robotics'],
@@ -58,27 +58,27 @@ export const ALL_PROJECTS = [
   },
   {
     id: '2',
-    title: { en: 'Industrial Milling Machine', ar: 'آلة فرز صناعية' },
+    title: { en: 'Stair Climber Wheelchair - Design 2', ar: 'كرسي متحرك متسلق للدرج - تصميم 2' },
     category: 'CAD Design',
     image: 'https://drive.google.com/uc?export=view&id=1Wfyg8_uTFyDw54FdCys_aAGVu2-29Kxd',
-    tags: ['SolidWorks', 'Industrial', 'Machining'],
-    description: { en: 'High-precision industrial milling machine assembly.', ar: 'تجميع آلة فرز صناعية عالية الدقة.' }
+    tags: ['SolidWorks', 'Mechanism', 'Robotics'],
+    description: { en: 'Alternative mechanism for stair climbing wheelchair.', ar: 'آلية بديلة للكرسي المتحرك المتسلق للدرج.' }
   },
   {
     id: '3',
-    title: { en: 'VMC Machining Center', ar: 'مركز تشغيل عمودي VMC' },
-    category: 'FEA Analysis',
+    title: { en: 'Stair Climber Wheelchair - Design 3', ar: 'كرسي متحرك متسلق للدرج - تصميم 3' },
+    category: 'CAD Design',
     image: 'https://drive.google.com/uc?export=view&id=1Wfyg8_uTFyDw54FdCys_aAGVu2-29Kxd',
-    tags: ['ANSYS', 'SolidWorks', 'FEA'],
-    description: { en: 'Structural analysis of a vertical machining center.', ar: 'التحليل الإنشائي لمركز تشغيل عمودي.' }
+    tags: ['SolidWorks', 'Mechanism', 'Robotics'],
+    description: { en: 'Refined structural design for stair climbing mobility.', ar: 'تصميم إنشائي محسن للتنقل عبر الدرج.' }
   },
   {
     id: '4',
-    title: { en: 'Precision Drilling Machine', ar: 'آلة ثقب دقيقة' },
-    category: 'Technical Documentation',
+    title: { en: 'Stair Climber Wheelchair - Design 4', ar: 'كرسي متحرك متسلق للدرج - تصميم 4' },
+    category: 'CAD Design',
     image: 'https://drive.google.com/uc?export=view&id=1Wfyg8_uTFyDw54FdCys_aAGVu2-29Kxd',
-    tags: ['SolidWorks', 'AutoCAD', 'Manufacturing'],
-    description: { en: 'Full technical documentation and manufacturing drawings.', ar: 'توثيق تقني كامل ورسومات تصنيع.' }
+    tags: ['SolidWorks', 'Mechanism', 'Robotics'],
+    description: { en: 'Optimized chassis for stair climbing wheelchair.', ar: 'هيكل محسن للكرسي المتحرك المتسلق للدرج.' }
   },
   {
     id: '5',

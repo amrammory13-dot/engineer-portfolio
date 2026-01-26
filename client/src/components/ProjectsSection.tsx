@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowRight, Zap } from 'lucide-react';
-import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { translations } from '@/locales/translations';
+import { ALL_PROJECTS } from '@/const';
 
 /**
  * Projects Section Component - Enhanced Version
@@ -19,62 +19,27 @@ export default function ProjectsSection() {
   const { language } = useLanguage();
   const t = translations[language].projects;
 
-  const projects = [
-    {
-      titleKey: 'engPlatform',
-      descKey: 'engDesc',
-      category: 'Educational Platform',
-      technologies: ['SolidWorks', 'CAD Design', 'Technical Documentation'],
-      image: '/images/projects-showcase.jpg',
-      link: '#',
-      color: 'from-blue-500 to-cyan-500',
-    },
-    {
-      titleKey: 'sheSyria',
-      descKey: 'sheDesc',
-      category: 'Community Project',
-      technologies: ['Project Management', 'Community Building', 'Leadership'],
-      image: '/images/projects-showcase.jpg',
-      link: '#',
-      color: 'from-pink-500 to-rose-500',
-    },
-    {
-      titleKey: 'syriamakers',
-      descKey: 'syriaDesc',
-      category: 'Innovation Hub',
-      technologies: ['Community Development', 'Innovation', 'Technology'],
-      image: '/images/projects-showcase.jpg',
-      link: '#',
-      color: 'from-purple-500 to-indigo-500',
-    },
-    {
-      titleKey: 'engPlatform',
-      descKey: 'engDesc',
-      category: 'Manufacturing',
-      technologies: ['SolidWorks', 'ANSYS', 'Manufacturing'],
-      image: '/images/projects-showcase.jpg',
-      link: '#',
-      color: 'from-orange-500 to-red-500',
-    },
-    {
-      titleKey: 'engPlatform',
-      descKey: 'engDesc',
-      category: 'Technical Training',
-      technologies: ['Automotive', 'Manufacturing', 'Technical Skills'],
-      image: '/images/projects-showcase.jpg',
-      link: '#',
-      color: 'from-green-500 to-emerald-500',
-    },
-    {
-      titleKey: 'engPlatform',
-      descKey: 'engDesc',
-      category: 'Project Management',
-      technologies: ['Leadership', 'Project Management', 'Innovation'],
-      image: '/images/projects-showcase.jpg',
-      link: '#',
-      color: 'from-yellow-500 to-orange-500',
-    },
-  ];
+  // Use the real projects from const.ts, focusing on CAD Design for the featured section
+  const featuredProjects = ALL_PROJECTS.slice(0, 6).map((project, index) => {
+    const colors = [
+      'from-blue-500 to-cyan-500',
+      'from-orange-500 to-red-500',
+      'from-purple-500 to-indigo-500',
+      'from-green-500 to-emerald-500',
+      'from-pink-500 to-rose-500',
+      'from-yellow-500 to-orange-500'
+    ];
+    
+    return {
+      title: project.title[language as 'en' | 'ar'],
+      description: project.description[language as 'en' | 'ar'],
+      category: project.category,
+      technologies: project.tags,
+      image: project.image,
+      link: 'https://drive.google.com/drive/folders/1I2WsU8eHcsWqFYVAc5HgD6uuFqaW8oRu',
+      color: colors[index % colors.length],
+    };
+  });
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -127,7 +92,7 @@ export default function ProjectsSection() {
   };
 
   return (
-    <section className="relative py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
+    <section id="projects" className="relative py-20 md:py-32 bg-gradient-to-b from-white to-gray-50 dark:from-slate-900 dark:to-slate-800 overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-orange-100 dark:bg-orange-900/10 rounded-full blur-3xl opacity-20 -z-10" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-100 dark:bg-blue-900/10 rounded-full blur-3xl opacity-20 -z-10" />
@@ -165,7 +130,7 @@ export default function ProjectsSection() {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
             variants={containerVariants}
           >
-            {projects.map((project, index) => (
+            {featuredProjects.map((project, index) => (
               <motion.div
                 key={index}
                 variants={cardVariants}
@@ -181,7 +146,7 @@ export default function ProjectsSection() {
                 <div className="relative h-48 overflow-hidden bg-gray-200 dark:bg-slate-700">
                   <motion.img
                     src={project.image}
-                    alt={t[project.titleKey as keyof typeof t]}
+                    alt={project.title}
                     className="w-full h-full object-cover"
                     variants={imageVariants}
                     whileHover="hover"
@@ -207,7 +172,7 @@ export default function ProjectsSection() {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.1 }}
                   >
-                    {t[project.titleKey as keyof typeof t]}
+                    {project.title}
                   </motion.h3>
 
                   <motion.p
@@ -216,7 +181,7 @@ export default function ProjectsSection() {
                     whileInView={{ opacity: 1 }}
                     transition={{ delay: 0.15 }}
                   >
-                    {t[project.descKey as keyof typeof t]}
+                    {project.description}
                   </motion.p>
 
                   {/* Technologies with stagger animation */}
@@ -247,14 +212,15 @@ export default function ProjectsSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`flex-1 flex items-center justify-center gap-2 px-4 py-2 bg-gradient-to-r ${project.color} text-white font-semibold rounded-lg transition-all duration-300 hover:shadow-lg`}
                     >
                       <ExternalLink className="w-4 h-4" />
                       {t.viewProject}
-                    </motion.button>
+                    </a>
                   </motion.div>
                 </div>
 
@@ -296,14 +262,13 @@ export default function ProjectsSection() {
                 {t.interestedDesc}
               </motion.p>
 
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(234, 88, 12, 0.3)' }}
-                whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold rounded-lg transition-all duration-300"
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-orange-600 to-orange-500 hover:from-orange-700 hover:to-orange-600 text-white font-semibold rounded-lg transition-all duration-300"
               >
                 {language === 'ar' ? 'تواصل معي' : 'Get In Touch'}
                 <ArrowRight className="w-4 h-4" />
-              </motion.button>
+              </a>
             </div>
           </motion.div>
         </motion.div>
